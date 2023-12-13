@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1> Get Brand </h1>
+
+<form class="form-control"  method="POST" action="/get_brand">
+    <input name="brand">
+    <button class="btn btn-danger" type="submit">ZOEK</button>
+</form>
+
+
+
+{% if cars_list is defined %}
+ 
+<table class="table" id="cars_table">
+  <thead>
+    <th>Brand:</th>
+    <th>Model:</th>
+    <th>Color:</th>
+    <th>Cilinders:</th>
+    <th>Price:</th>
+  </thead>
+  <tbody>
+    {% for car in cars_list %}
+    <tr>
+        <td> {{ car.merk }} </td>
+        <td> {{ car.handelsbenaming }} </td>
+        <td> {{ car.eerste_kleur }} </td>
+        <td> {{ car.aantal_cilinders }} </td>
+        <td> {{ car.catalogusprijs }} </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<script>
+  $(document).ready(function(){
+    $('#cars_table').DataTable();
+  })
+</script>
+  
+{% else %}
+{% endif %}
+
+{% endblock %}
